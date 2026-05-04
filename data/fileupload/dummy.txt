@@ -1,0 +1,2 @@
+ MY name is mitesh pawar
+ C:\Users\ADMIN\Documents\workplace\live\wdio-cucumber-e2e-test>npx wdio wdio.conf.ts --spec ./test/features/demo/inventory.feature

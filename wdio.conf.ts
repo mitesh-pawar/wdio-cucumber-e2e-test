@@ -1,3 +1,7 @@
+import dotenv from "dotenv"
+dotenv.config()
+let headless = process.env.HEADLESS || "N"
+console.log(`${headless}`);
 export const config: WebdriverIO.Config = {
     //
     // ====================
@@ -52,7 +56,11 @@ export const config: WebdriverIO.Config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'chrome',
+        "goog:chromeOptions":{
+args: headless.toLowerCase() === "y"
+    ? ["--disable-web-security","--headless","--disable-dev-shm-usage","--no-sandbox","--window-size=1920,1080"]
+    : []        }
     }],
 
     //
@@ -86,7 +94,7 @@ export const config: WebdriverIO.Config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    // baseUrl: 'http://localhost:8080',
+    baseUrl: 'https://localhost',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
